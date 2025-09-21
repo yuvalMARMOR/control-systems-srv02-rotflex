@@ -80,5 +80,5 @@ Full summary report is available under:
 
 ## 👥 Authors
 
-Project developed as part of control systems coursework.  
+Project developed as part of the academic track in Control, Mechatronics, and Robotics.  
 Contributors: **Yuval Marmor**, **Rabea Hawa**.  
