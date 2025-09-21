@@ -101,4 +101,5 @@ disp( 'SRV02+ROTFLEX Control Gain: ' )
 disp( [ '   K(1) = ' num2str( K(1) ) ' V/rad' ] )
 disp( [ '   K(2) = ' num2str( K(2) ) ' V/rad' ] )
 disp( [ '   K(3) = ' num2str( K(3) ) ' V/(rad/s)' ] )
+
 disp( [ '   K(4) = ' num2str( K(4) ) ' V/(rad/s)' ] )
