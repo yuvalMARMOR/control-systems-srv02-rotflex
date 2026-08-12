@@ -1,0 +1,21 @@
+# MATLAB editor and autosave files
+*.asv
+*.autosave
+*.m~
+
+# Simulink generated artifacts
+*.slxc
+slprj/
+*_rtw/
+codegen/
+
+# Compiled MATLAB extensions and transient output
+*.mex*
+*.log
+*.tmp
+
+# Local notebook checkpoints
+.ipynb_checkpoints/
+
+# Local QA artifacts
+tmp/

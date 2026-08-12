@@ -1,20 +1,40 @@
-שCsys=ss(A,B,C,D) %define system
-Ts=0.002;       %sampling time
-Dsys=c2d(Csys,Ts);  %convert to discrete
-[AD,BD,CD,DD]=ssdata(Dsys);%retrieve matrices
+%% MODEL3 - NOMINAL DISCRETE SRV02-ROTFLEX CONTROLLER DESIGN
+% Initializes the physical plant, converts it to a 2 ms discrete model,
+% maps the desired continuous poles to the z-plane, and computes the
+% pole-placement gain used by Q_MDL_DISC.mdl.
 
-zeta=0.6;
-wn=20;
+clearvars;
+close all;
+clc;
 
-sig=zeta*wn;
-wd=wn*sqrt(1-zeta^2);
-s3=20;
-s4=25;
+project_dir = fileparts(mfilename('fullpath'));
+modules_dir = fullfile(project_dir, 'Modules');
+addpath(modules_dir);
+run(fullfile(modules_dir, 'setup_srv02_exp05_rotflex.m'));
 
-pCont=[-sig+wd*j,-sig-wd*j,-s3,-s4];%poles in s-domain
-pDisc=exp(pCont.*Ts)     %poles in z-domain
-cont=place(A,B,pCont);
-K=place(AD,BD,pDisc)
+Csys = ss(A, B, C, D);
+Ts = 0.002;
+Dsys = c2d(Csys, Ts, 'zoh');
+[AD, BD, CD, DD] = ssdata(Dsys);
 
-%s=tf('s')
-%systf=C*(s*eye-A)^(-1)*B
+zeta = 0.6;
+wn = 20;
+sigma = zeta*wn;
+wd = wn*sqrt(1-zeta^2);
+
+poles_continuous = [-sigma + 1i*wd, ...
+                    -sigma - 1i*wd, ...
+                    -20, -25];
+poles_discrete = exp(poles_continuous*Ts);
+
+K_continuous = place(A, B, poles_continuous);
+K = place(AD, BD, poles_discrete);
+KI = [1.6, 1.6];
+
+fprintf('Nominal sampling time: %.6f s\n', Ts);
+fprintf('Mapped discrete poles:\n');
+disp(poles_discrete);
+fprintf('Discrete pole-placement gain K:\n');
+disp(K);
+fprintf('Integral gain KI:\n');
+disp(KI);

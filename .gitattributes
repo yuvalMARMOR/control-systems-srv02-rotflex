@@ -1,0 +1,5 @@
+*.m linguist-language=MATLAB
+notebooks/** linguist-documentation
+assets/** linguist-documentation
+SRV02-Observer-Control/Modules/** linguist-vendored
+*.slxc linguist-generated

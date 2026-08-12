@@ -33,7 +33,7 @@
 % Quanser Consulting Inc.
 %%
 % 
-function [ Rm, kt, km, Kg, eta_g, Beq, Jm, Jeq, eta_m, K_POT, K_TACH, K_ENC, VMAX_AMP, IMAX_AMP ] = setup_srv02_configuration( EXT_GEAR_CONFIG, ENCODER_TYPE, TACH_OPTION, AMP_TYPE, LOAD_TYPE )
+function [ Rm, kt, km, Kg, eta_g, Beq, Jm, Jeq, eta_m, K_POT, K_TACH, K_ENC, VMAX_AMP, IMAX_AMP ] = config_srv02( EXT_GEAR_CONFIG, ENCODER_TYPE, TACH_OPTION, AMP_TYPE, LOAD_TYPE )
     % Set constant SRV02 parameters
     [ Rm, kt, km, Kgi, eta_g, eta_m ] = set_srv02_constants();
     % Calculate motor and gear inertias
